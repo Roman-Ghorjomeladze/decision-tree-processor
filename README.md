@@ -74,42 +74,6 @@ Custom functions, like `Math`, are supported and passed into the evaluation cont
 2. If **`filtrex`** evaluation fails, **`expr-eval`** is used as a fallback.
 3. The context is dynamically injected to evaluate the expression, and the result is returned.
 
-## Running the Server
-
-To run the server or backend service (if you have a specific backend service setup for handling decision trees):
-
-1. Create your server using Express or any other framework you prefer.
-2. Define an endpoint that accepts the decision tree and context as input, then uses the `ExpressionEvaluator` to process it.
-
-### Example with Express
-
-```ts
-import express from "express";
-import { ExpressionEvaluator } from "./utils/ExpressionEvaluator";
-
-const app = express();
-app.use(express.json());
-
-const evaluator = new ExpressionEvaluator();
-
-app.post("/execute", async (req, res) => {
-	const { expression, context } = req.body;
-
-	try {
-		const result = await evaluator.evaluate(expression, context);
-		res.json({ result });
-	} catch (e) {
-		res.status(500).json({ error: e.message });
-	}
-});
-
-app.listen(3000, () => {
-	console.log("Server running on http://localhost:3000");
-});
-```
-
----
-
 ## Testing
 
 To test the functionality, you can send POST requests to the **`/execute`** endpoint with a JSON body containing the `expression` and `context`. Also context is optional, user can place actual values dyrectly in expession or put placeholders in expression and place values in context.
