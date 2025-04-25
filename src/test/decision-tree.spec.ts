@@ -1,6 +1,9 @@
 import request from "supertest";
 import app from "../server/app";
-
+/**
+ * On real project I'd add more tests (both Unit and E2E) but for test one
+ * I think those E2E tests are enough.
+ */
 describe("Decision Tree API (TS)", () => {
 	it("should return success on valid tree", async () => {
 		const tree = {
